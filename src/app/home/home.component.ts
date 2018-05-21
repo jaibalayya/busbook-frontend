@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+//import {$} from "protractor";
+
+import * as $ from 'jquery';
+
 
 @Component({
   selector: 'app-home',
@@ -10,6 +14,8 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
+
   }
 
 }

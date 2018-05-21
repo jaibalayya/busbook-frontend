@@ -70,8 +70,62 @@ var userAgent = navigator.userAgent.toLowerCase(),
 /**
  * Initialize All Scripts
  */
-$document.ready(function () {
+var demo1;
+function demo() {
+  console.log("DEMO =>> Success")
+  satya();
+}
 
+function satya () {
+  plugins = {
+    pointerEvents: isIE < 11 ? "js/pointer-events.min.js" : false,
+    smoothScroll: $html.hasClass("use--smoothscroll") ? "js/smoothscroll.min.js" : false,
+    bootstrapTooltip: $("[data-toggle='tooltip']"),
+    bootstrapTabs: $(".tabs"),
+    rdParallax: $(".rd-parallax"),
+    rdAudioPlayer: $(".rd-audio"),
+    rdVideoPlayer: $(".rd-video-player"),
+    responsiveTabs: $(".responsive-tabs"),
+    rdGoogleMaps: $("#rd-google-map"),
+    rdInputLabel: $(".form-label"),
+    rdNavbar: $(".rd-navbar"),
+    rdVideoBG: $(".rd-video"),
+    regula: $("[data-constraints]"),
+    stepper: $("input[type='number']"),
+    radio: $("input[type='radio']"),
+    checkbox: $(".checkbox-custom"),
+    toggles: $(".toggle-custom"),
+    facebookplugin: $('#fb-root'),
+    owl: $(".owl-carousel"),
+    swiper: $(".swiper-slider"),
+    counter: $(".counter"),
+    photoSwipeGallery: $("[data-photo-swipe-item]"),
+    flickrfeed: $(".flickr"),
+    twitterfeed: $(".twitter"),
+    progressBar: $(".progress-linear"),
+    circleProgress: $(".progress-bar-circle"),
+    isotope: $(".isotope"),
+    countDown: $(".countdown"),
+    stacktable: $("table[data-responsive='true']"),
+    customToggle: $("[data-custom-toggle]"),
+    customWaypoints: $('[data-custom-scroll-to]'),
+    resizable: $(".resizable"),
+    selectFilter: $("select"),
+    dateCountdown: $('.DateCountdown'),
+    calendar: $(".rd-calendar"),
+    productThumb: $(".product-thumbnails"),
+    imgZoom: $(".img-zoom"),
+    facebookfeed: $(".facebook"),
+    pageLoader: $(".page-loader"),
+    search: $(".rd-search"),
+    searchResults: $('.rd-search-results'),
+    rdMailForm: $(".rd-mailform"),
+    iframeEmbed: $("iframe.embed-responsive-item"),
+    bootstrapDateTimePicker: $("[data-time-picker]"),
+    checkoutRDTabs: $(".checkout-tabs"),
+    galleryRDTabs: $(".gallery-tabs"),
+    navbarToggle: $(".rd-navbar-toggle")
+  };
   /**
    * isScrolledIntoView
    * @description  check the element whas been scrolled into the view
@@ -113,7 +167,7 @@ $document.ready(function () {
    */
   function getSwiperHeight(object, attr) {
     var val = object.attr("data-" + attr),
-        dim;
+      dim;
     if (!val) {
       return undefined;
     }
@@ -157,7 +211,7 @@ $document.ready(function () {
 
     $.grep(swiper.slides, function (element, index) {
       var $slide = $(element),
-          video;
+        video;
 
       if (index === swiper.activeIndex) {
         videos = $slide.find("video");
@@ -183,31 +237,31 @@ $document.ready(function () {
     }
 
     var prevSlide = $(swiper.container),
-        nextSlide = $(swiper.slides[swiper.activeIndex]);
+      nextSlide = $(swiper.slides[swiper.activeIndex]);
 
     prevSlide
-        .find("[data-caption-animate]")
-        .each(function () {
-          var $this = $(this);
-          $this
-              .removeClass("animated")
-              .removeClass($this.attr("data-caption-animate"))
-              .addClass("not-animated");
-        });
+      .find("[data-caption-animate]")
+      .each(function () {
+        var $this = $(this);
+        $this
+          .removeClass("animated")
+          .removeClass($this.attr("data-caption-animate"))
+          .addClass("not-animated");
+      });
 
     nextSlide
-        .find("[data-caption-animate]")
-        .each(function () {
-          var $this = $(this),
-              delay = $this.attr("data-caption-delay");
+      .find("[data-caption-animate]")
+      .each(function () {
+        var $this = $(this),
+          delay = $this.attr("data-caption-delay");
 
-          setTimeout(function () {
-            $this
-                .removeClass("not-animated")
-                .addClass($this.attr("data-caption-animate"))
-                .addClass("animated");
-          }, delay ? parseInt(delay) : 0);
-        });
+        setTimeout(function () {
+          $this
+            .removeClass("not-animated")
+            .addClass($this.attr("data-caption-animate"))
+            .addClass("animated");
+        }, delay ? parseInt(delay) : 0);
+      });
   }
 
   /**
@@ -226,12 +280,12 @@ $document.ready(function () {
 
       if (el.attr('data-fade') === 'true') {
         var bound = el[0].getBoundingClientRect(),
-            offsetTop = bound.top * 2 + scrollY,
-            sceneHeight = wrapper.outerHeight(),
-            sceneDevider = wrapper.offset().top + sceneHeight / 2.0,
-            layerDevider = offsetTop + el.outerHeight() / 2.0,
-            pos = sceneHeight / 6.0,
-            opacity;
+          offsetTop = bound.top * 2 + scrollY,
+          sceneHeight = wrapper.outerHeight(),
+          sceneDevider = wrapper.offset().top + sceneHeight / 2.0,
+          layerDevider = offsetTop + el.outerHeight() / 2.0,
+          pos = sceneHeight / 6.0,
+          opacity;
         if (sceneDevider + pos > layerDevider && sceneDevider - pos < layerDevider) {
           el[0].style["opacity"] = 1;
         } else {
@@ -294,28 +348,28 @@ $document.ready(function () {
     }
 
     elements
-        .on('input change propertychange blur', function (e) {
-          var $this = $(this), results;
+      .on('input change propertychange blur', function (e) {
+        var $this = $(this), results;
 
-          if (e.type != "blur") {
-            if (!$this.parent().hasClass("has-error")) {
-              return;
-            }
-          }
-
-          if ($this.parents('.rd-mailform').hasClass('success')) {
+        if (e.type != "blur") {
+          if (!$this.parent().hasClass("has-error")) {
             return;
           }
+        }
 
-          if ((results = $this.regula('validate')).length) {
-            for (i = 0; i < results.length; i++) {
-              $this.siblings(".form-validation").text(results[i].message).parent().addClass("has-error")
-            }
-          } else {
-            $this.siblings(".form-validation").text("").parent().removeClass("has-error")
+        if ($this.parents('.rd-mailform').hasClass('success')) {
+          return;
+        }
+
+        if ((results = $this.regula('validate')).length) {
+          for (i = 0; i < results.length; i++) {
+            $this.siblings(".form-validation").text(results[i].message).parent().addClass("has-error")
           }
-        })
-        .regula('bind');
+        } else {
+          $this.siblings(".form-validation").text("").parent().removeClass("has-error")
+        }
+      })
+      .regula('bind');
   }
 
   /**
@@ -356,35 +410,35 @@ $document.ready(function () {
    * @description  validate google reCaptcha
    */
   function validateReCaptcha(captcha) {
-      var $captchaToken = captcha.find('.g-recaptcha-response').val();
+    var $captchaToken = captcha.find('.g-recaptcha-response').val();
 
-      if ($captchaToken == '') {
-        captcha
-            .siblings('.form-validation')
-            .html('Please, prove that you are not robot.')
-            .addClass('active');
-        captcha
+    if ($captchaToken == '') {
+      captcha
+        .siblings('.form-validation')
+        .html('Please, prove that you are not robot.')
+        .addClass('active');
+      captcha
+        .closest('.form-group')
+        .addClass('has-error');
+
+      captcha.bind('propertychange', function () {
+        var $this = $(this),
+          $captchaToken = $this.find('.g-recaptcha-response').val();
+
+        if($captchaToken != '') {
+          $this
             .closest('.form-group')
-            .addClass('has-error');
+            .removeClass('has-error');
+          $this
+            .siblings('.form-validation')
+            .removeClass('active')
+            .html('');
+          $this.unbind('propertychange');
+        }
+      });
 
-        captcha.bind('propertychange', function () {
-          var $this = $(this),
-              $captchaToken = $this.find('.g-recaptcha-response').val();
-
-          if($captchaToken != '') {
-            $this
-                .closest('.form-group')
-                .removeClass('has-error');
-            $this
-                .siblings('.form-validation')
-                .removeClass('active')
-                .html('');
-            $this.unbind('propertychange');
-          }
-        });
-
-        return false;
-      }
+      return false;
+    }
 
     return true;
   }
@@ -399,15 +453,15 @@ $document.ready(function () {
       var $capthcaItem = $(plugins.captcha[i]);
 
       grecaptcha.render(
-          $capthcaItem.attr('id'),
-          {
-            sitekey: $capthcaItem.attr('data-sitekey'),
-            size: $capthcaItem.attr('data-size') ? $capthcaItem.attr('data-size') : 'normal',
-            theme: $capthcaItem.attr('data-theme') ? $capthcaItem.attr('data-theme') : 'light',
-            callback: function (e) {
-              $('.recaptcha').trigger('propertychange');
-            }
+        $capthcaItem.attr('id'),
+        {
+          sitekey: $capthcaItem.attr('data-sitekey'),
+          size: $capthcaItem.attr('data-size') ? $capthcaItem.attr('data-size') : 'normal',
+          theme: $capthcaItem.attr('data-theme') ? $capthcaItem.attr('data-theme') : 'light',
+          callback: function (e) {
+            $('.recaptcha').trigger('propertychange');
           }
+        }
       );
       $capthcaItem.after("<span class='form-validation'></span>");
     }
@@ -436,28 +490,28 @@ $document.ready(function () {
     var i;
     for (i = 0; i < plugins.dateCountdown.length; i++) {
       var dateCountdownItem = $(plugins.dateCountdown[i]),
-          time = {
-            "Days": {
-              "text": "Days",
-              "color": "#3256a4",
-              "show": true
-            },
-            "Hours": {
-              "text": "Hours",
-              "color": "#3256a4",
-              "show": true
-            },
-            "Minutes": {
-              "text": "Minutes",
-              "color": "#3256a4",
-              "show": true
-            },
-            "Seconds": {
-              "text": "Seconds",
-              "color": "#3256a4",
-              "show": true
-            }
-          };
+        time = {
+          "Days": {
+            "text": "Days",
+            "color": "#3256a4",
+            "show": true
+          },
+          "Hours": {
+            "text": "Hours",
+            "color": "#3256a4",
+            "show": true
+          },
+          "Minutes": {
+            "text": "Minutes",
+            "color": "#3256a4",
+            "show": true
+          },
+          "Seconds": {
+            "text": "Seconds",
+            "color": "#3256a4",
+            "show": true
+          }
+        };
       dateCountdownItem.TimeCircles({
         fg_width: 0.045,
         circle_bg_color: "#f2f6ff",
@@ -517,28 +571,28 @@ $document.ready(function () {
       var i;
       for (i = 0; i < plugins.dateCountdown.length; i++) {
         var dateCountdownItem = $(plugins.dateCountdown[i]),
-            time = {
-              "Days": {
-                "text": "Days",
-                "color": "#92a6d1",
-                "show": true
-              },
-              "Hours": {
-                "text": "Hours",
-                "color": "#92a6d1",
-                "show": true
-              },
-              "Minutes": {
-                "text": "Minutes",
-                "color": "#92a6d1",
-                "show": true
-              },
-              "Seconds": {
-                "text": "Seconds",
-                "color": "#92a6d1",
-                "show": true
-              }
-            };
+          time = {
+            "Days": {
+              "text": "Days",
+              "color": "#92a6d1",
+              "show": true
+            },
+            "Hours": {
+              "text": "Hours",
+              "color": "#92a6d1",
+              "show": true
+            },
+            "Minutes": {
+              "text": "Minutes",
+              "color": "#92a6d1",
+              "show": true
+            },
+            "Seconds": {
+              "text": "Seconds",
+              "color": "#92a6d1",
+              "show": true
+            }
+          };
         dateCountdownItem.TimeCircles({
           fg_width: 0.045,
           circle_bg_color: "#f2f6ff",
@@ -612,8 +666,8 @@ $document.ready(function () {
    */
   function makeVisible(el) {
     var count = el.length,
-        k = 0,
-        step = 2.5;
+      k = 0,
+      step = 2.5;
     for (var i = 0; i < count; i++) {
       timer = setTimeout(function () {
         var rand = makeUniqueRandom(count);
@@ -650,10 +704,10 @@ $document.ready(function () {
     if (isIE < 11) {
       if (plugins.pointerEvents) {
         $.getScript(plugins.pointerEvents)
-            .done(function () {
-              $html.addClass("ie-10");
-              PointerEventsPolyfill.initialize({});
-            });
+          .done(function () {
+            $html.addClass("ie-10");
+            PointerEventsPolyfill.initialize({});
+          });
       }
     }
 
@@ -675,152 +729,152 @@ $document.ready(function () {
       var s = $(this);
 
       var pag = s.find(".swiper-pagination"),
-          next = s.find(".swiper-button-next"),
-          prev = s.find(".swiper-button-prev"),
-          bar = s.find(".swiper-scrollbar"),
-          h = getSwiperHeight(plugins.swiper, "height"), mh = getSwiperHeight(plugins.swiper, "min-height"),
-          parallax = s.parents('.rd-parallax').length;
+        next = s.find(".swiper-button-next"),
+        prev = s.find(".swiper-button-prev"),
+        bar = s.find(".swiper-scrollbar"),
+        h = getSwiperHeight(plugins.swiper, "height"), mh = getSwiperHeight(plugins.swiper, "min-height"),
+        parallax = s.parents('.rd-parallax').length;
 
       s.find(".swiper-slide")
-          .each(function () {
-            var $this = $(this),
-                url;
+        .each(function () {
+          var $this = $(this),
+            url;
 
-            if (url = $this.attr("data-slide-bg")) {
-              $this.css({
-                "background-image": "url(" + url + ")",
-                "background-size": "cover"
-              })
+          if (url = $this.attr("data-slide-bg")) {
+            $this.css({
+              "background-image": "url(" + url + ")",
+              "background-size": "cover"
+            })
+          }
+
+        })
+        .end()
+        .find("[data-caption-animate]")
+        .addClass("not-animated")
+        .end()
+        .swiper({
+          autoplay: s.attr('data-autoplay') === "true" ? 5000 : false,
+          direction: s.attr('data-direction') ? s.attr('data-direction') : "horizontal",
+          effect: s.attr('data-slide-effect') ? s.attr('data-slide-effect') : "slide",
+          speed: s.attr('data-slide-speed') ? s.attr('data-slide-speed') : 600,
+          keyboardControl: s.attr('data-keyboard') === "true",
+          mousewheelControl: s.attr('data-mousewheel') === "true",
+          mousewheelReleaseOnEdges: s.attr('data-mousewheel-release') === "true",
+          nextButton: next.length ? next.get(0) : null,
+          prevButton: prev.length ? prev.get(0) : null,
+          pagination: pag.length ? pag.get(0) : null,
+          simulateTouch: false,
+          paginationClickable: pag.length ? pag.attr("data-clickable") !== "false" : false,
+          paginationBulletRender: pag.length ? pag.attr("data-index-bullet") === "true" ? function (index, className) {
+            return '<span class="' + className + '">' + (index + 1) + '</span>';
+          } : null : null,
+          scrollbar: bar.length ? bar.get(0) : null,
+          scrollbarDraggable: bar.length ? bar.attr("data-draggable") !== "false" : true,
+          scrollbarHide: bar.length ? bar.attr("data-draggable") === "false" : false,
+          loop: s.attr('data-loop') !== "false",
+          loopAdditionalSlides: 0,
+          loopedSlides: 0,
+          onTransitionStart: function (swiper) {
+            toggleSwiperInnerVideos(swiper);
+          },
+          onTransitionEnd: function (swiper) {
+            toggleSwiperCaptionAnimation(swiper);
+            $(window).trigger("resize");
+          },
+
+          onInit: function (swiper) {
+            if (plugins.pageLoader.length) {
+              var srcFirst = $("#page-loader").attr("data-slide-bg"),
+                image = document.createElement('img');
+
+              image.src = srcFirst;
+              image.onload = function () {
+                plugins.pageLoader.addClass("loaded");
+              };
             }
+            toggleSwiperInnerVideos(swiper);
+            toggleSwiperCaptionAnimation(swiper);
 
-          })
-          .end()
-          .find("[data-caption-animate]")
-          .addClass("not-animated")
-          .end()
-          .swiper({
-            autoplay: s.attr('data-autoplay') === "true" ? 5000 : false,
-            direction: s.attr('data-direction') ? s.attr('data-direction') : "horizontal",
-            effect: s.attr('data-slide-effect') ? s.attr('data-slide-effect') : "slide",
-            speed: s.attr('data-slide-speed') ? s.attr('data-slide-speed') : 600,
-            keyboardControl: s.attr('data-keyboard') === "true",
-            mousewheelControl: s.attr('data-mousewheel') === "true",
-            mousewheelReleaseOnEdges: s.attr('data-mousewheel-release') === "true",
-            nextButton: next.length ? next.get(0) : null,
-            prevButton: prev.length ? prev.get(0) : null,
-            pagination: pag.length ? pag.get(0) : null,
-            simulateTouch: false,
-            paginationClickable: pag.length ? pag.attr("data-clickable") !== "false" : false,
-            paginationBulletRender: pag.length ? pag.attr("data-index-bullet") === "true" ? function (index, className) {
-              return '<span class="' + className + '">' + (index + 1) + '</span>';
-            } : null : null,
-            scrollbar: bar.length ? bar.get(0) : null,
-            scrollbarDraggable: bar.length ? bar.attr("data-draggable") !== "false" : true,
-            scrollbarHide: bar.length ? bar.attr("data-draggable") === "false" : false,
-            loop: s.attr('data-loop') !== "false",
-            loopAdditionalSlides: 0,
-            loopedSlides: 0,
-            onTransitionStart: function (swiper) {
-              toggleSwiperInnerVideos(swiper);
-            },
-            onTransitionEnd: function (swiper) {
-              toggleSwiperCaptionAnimation(swiper);
-              $(window).trigger("resize");
-            },
+            // Create parallax effect on swiper caption
+            s.find(".swiper-parallax")
+              .each(function () {
+                var $this = $(this),
+                  speed;
 
-            onInit: function (swiper) {
-              if (plugins.pageLoader.length) {
-                var srcFirst = $("#page-loader").attr("data-slide-bg"),
-                    image = document.createElement('img');
-
-                image.src = srcFirst;
-                image.onload = function () {
-                  plugins.pageLoader.addClass("loaded");
-                };
-              }
-              toggleSwiperInnerVideos(swiper);
-              toggleSwiperCaptionAnimation(swiper);
-
-              // Create parallax effect on swiper caption
-              s.find(".swiper-parallax")
-                  .each(function () {
-                    var $this = $(this),
-                        speed;
-
-                    if (parallax && !isIE && !isMobile) {
-                      if (speed = $this.attr("data-speed")) {
-                        makeParallax($this, speed, s, false);
-                      }
-                    }
-                  });
-              $(window).on('resize', function () {
-                swiper.update(true);
-              })
-            },
-            onSlideChangeStart: function (swiper) {
-              var activeSlideIndex, slidesCount, thumbsToShow = 3;
-
-              activeSlideIndex = swiper.activeIndex;
-              slidesCount = swiper.slides.not(".swiper-slide-duplicate").length;
-
-              //If there is not enough slides
-              if (slidesCount < thumbsToShow)
-                return false;
-
-              //Fix index count
-              if (activeSlideIndex === slidesCount + 1) {
-                activeSlideIndex = 1;
-              } else if (activeSlideIndex === 0) {
-                activeSlideIndex = slidesCount;
-              }
-
-              //Lopp that adds background to thumbs
-              for (var i = -thumbsToShow; i < thumbsToShow + 1; i++) {
-                if (i === 0)
-                  continue;
-
-                //Previous btn thumbs
-                if (i < 0) {
-                  //If there is no slides before current
-                  if (( activeSlideIndex + i - 1) < 0) {
-                    $(swiper.container).find('.swiper-button-prev .preview__img-' + Math.abs(i))
-                        .css("background-image", "url(" + swiper.slides[slidesCount + i + 1].getAttribute("data-preview-bg") + ")");
-                  } else {
-                    $(swiper.container).find('.swiper-button-prev .preview__img-' + Math.abs(i))
-                        .css("background-image", "url(" + swiper.slides[activeSlideIndex + i].getAttribute("data-preview-bg") + ")");
-                  }
-
-                  //Next btn thumbs
-                } else {
-                  //If there is no slides after current
-                  if (activeSlideIndex + i - 1 > slidesCount) {
-                    $(swiper.container).find('.swiper-button-next .preview__img-' + i)
-                        .css("background-image", "url(" + swiper.slides[i].getAttribute("data-preview-bg") + ")");
-                  } else {
-                    $(swiper.container).find('.swiper-button-next .preview__img-' + i)
-                        .css("background-image", "url(" + swiper.slides[activeSlideIndex + i].getAttribute("data-preview-bg") + ")");
+                if (parallax && !isIE && !isMobile) {
+                  if (speed = $this.attr("data-speed")) {
+                    makeParallax($this, speed, s, false);
                   }
                 }
+              });
+            $(window).on('resize', function () {
+              swiper.update(true);
+            })
+          },
+          onSlideChangeStart: function (swiper) {
+            var activeSlideIndex, slidesCount, thumbsToShow = 3;
+
+            activeSlideIndex = swiper.activeIndex;
+            slidesCount = swiper.slides.not(".swiper-slide-duplicate").length;
+
+            //If there is not enough slides
+            if (slidesCount < thumbsToShow)
+              return false;
+
+            //Fix index count
+            if (activeSlideIndex === slidesCount + 1) {
+              activeSlideIndex = 1;
+            } else if (activeSlideIndex === 0) {
+              activeSlideIndex = slidesCount;
+            }
+
+            //Lopp that adds background to thumbs
+            for (var i = -thumbsToShow; i < thumbsToShow + 1; i++) {
+              if (i === 0)
+                continue;
+
+              //Previous btn thumbs
+              if (i < 0) {
+                //If there is no slides before current
+                if (( activeSlideIndex + i - 1) < 0) {
+                  $(swiper.container).find('.swiper-button-prev .preview__img-' + Math.abs(i))
+                    .css("background-image", "url(" + swiper.slides[slidesCount + i + 1].getAttribute("data-preview-bg") + ")");
+                } else {
+                  $(swiper.container).find('.swiper-button-prev .preview__img-' + Math.abs(i))
+                    .css("background-image", "url(" + swiper.slides[activeSlideIndex + i].getAttribute("data-preview-bg") + ")");
+                }
+
+                //Next btn thumbs
+              } else {
+                //If there is no slides after current
+                if (activeSlideIndex + i - 1 > slidesCount) {
+                  $(swiper.container).find('.swiper-button-next .preview__img-' + i)
+                    .css("background-image", "url(" + swiper.slides[i].getAttribute("data-preview-bg") + ")");
+                } else {
+                  $(swiper.container).find('.swiper-button-next .preview__img-' + i)
+                    .css("background-image", "url(" + swiper.slides[activeSlideIndex + i].getAttribute("data-preview-bg") + ")");
+                }
               }
-            },
-          });
+            }
+          },
+        });
 
       $(window)
-          .on("resize", function () {
-            var mh = getSwiperHeight(s, "min-height"),
-                h = getSwiperHeight(s, "height");
-            if (h) {
-              s.css("height", mh ? mh > h ? mh : h : h);
+        .on("resize", function () {
+          var mh = getSwiperHeight(s, "min-height"),
+            h = getSwiperHeight(s, "height");
+          if (h) {
+            s.css("height", mh ? mh > h ? mh : h : h);
+          }
+        })
+        .load(function () {
+          s.find("video").each(function () {
+            if (!$(this).parents(".swiper-slide-active").length) {
+              this.pause();
             }
-          })
-          .load(function () {
-            s.find("video").each(function () {
-              if (!$(this).parents(".swiper-slide-active").length) {
-                this.pause();
-              }
-            });
-          })
-          .trigger("resize");
+          });
+        })
+        .trigger("resize");
     });
   }
 
@@ -853,25 +907,25 @@ $document.ready(function () {
     for (i = 0; i < plugins.circleProgress.length; i++) {
       var circleProgressItem = $(plugins.circleProgress[i]);
       $document
-          .on("scroll", function () {
-            if (!circleProgressItem.hasClass('animated')) {
+        .on("scroll", function () {
+          if (!circleProgressItem.hasClass('animated')) {
 
-              var arrayGradients = circleProgressItem.attr('data-gradient').split(",");
+            var arrayGradients = circleProgressItem.attr('data-gradient').split(",");
 
-              circleProgressItem.circleProgress({
-                value: circleProgressItem.attr('data-value'),
-                size: circleProgressItem.attr('data-size') ? circleProgressItem.attr('data-size') : 175,
-                fill: {gradient: arrayGradients, gradientAngle: Math.PI / 4},
-                startAngle: -Math.PI / 4 * 2,
-                emptyFill: $(this).attr('data-empty-fill') ? $(this).attr('data-empty-fill') : "rgb(245,245,245)"
+            circleProgressItem.circleProgress({
+              value: circleProgressItem.attr('data-value'),
+              size: circleProgressItem.attr('data-size') ? circleProgressItem.attr('data-size') : 175,
+              fill: {gradient: arrayGradients, gradientAngle: Math.PI / 4},
+              startAngle: -Math.PI / 4 * 2,
+              emptyFill: $(this).attr('data-empty-fill') ? $(this).attr('data-empty-fill') : "rgb(245,245,245)"
 
-              }).on('circle-animation-progress', function (event, progress, stepValue) {
-                $(this).find('span').text(String(stepValue.toFixed(2)).replace('0.', '').replace('1.', '1'));
-              });
-              circleProgressItem.addClass('animated');
-            }
-          })
-          .trigger("scroll");
+            }).on('circle-animation-progress', function (event, progress, stepValue) {
+              $(this).find('span').text(String(stepValue.toFixed(2)).replace('0.', '').replace('1.', '1'));
+            });
+            circleProgressItem.addClass('animated');
+          }
+        })
+        .trigger("scroll");
     }
   }
 
@@ -909,12 +963,12 @@ $document.ready(function () {
     var i, j;
     for (i = 0; i < plugins.countDown.length; i++) {
       var countDownItem = plugins.countDown[i],
-          $countDownItem = $(countDownItem),
-          d = new Date(),
-          type = countDownItem.getAttribute('data-type'),
-          time = countDownItem.getAttribute('data-time'),
-          format = countDownItem.getAttribute('data-format'),
-          settings = [];
+        $countDownItem = $(countDownItem),
+        d = new Date(),
+        type = countDownItem.getAttribute('data-type'),
+        time = countDownItem.getAttribute('data-time'),
+        format = countDownItem.getAttribute('data-format'),
+        settings = [];
 
       d.setTime(Date.parse(time)).toLocaleString();
       settings[type] = d;
@@ -1076,7 +1130,7 @@ $document.ready(function () {
   if (plugins.rdGoogleMaps.length) {
     $.getScript("http://maps.google.com/maps/api/js?sensor=false&libraries=geometry,places&v=3.7", function () {
       var head = document.getElementsByTagName('head')[0],
-          insertBefore = head.insertBefore;
+        insertBefore = head.insertBefore;
 
       head.insertBefore = function (newElement, referenceElement) {
         if (newElement.href && newElement.href.indexOf('//fonts.googleapis.com/css?family=Roboto') != -1 || newElement.innerHTML.indexOf('gm-style') != -1) {
@@ -1097,10 +1151,10 @@ $document.ready(function () {
               var input = inputAddress;
               var geocoder = new google.maps.Geocoder();
               var marker = new google.maps.Marker(
-                  {
-                    map: map,
-                    icon: "images/gmap_marker.png",
-                  }
+                {
+                  map: map,
+                  icon: "images/gmap_marker.png",
+                }
               );
               var autocomplete = new google.maps.places.Autocomplete(inputAddress[0]);
               autocomplete.bindTo('bounds', map);
@@ -1118,12 +1172,12 @@ $document.ready(function () {
                     var longitude = results[0].geometry.location.lng();
 
                     map.setCenter(new google.maps.LatLng(
-                        parseFloat(latitude),
-                        parseFloat(longitude)
+                      parseFloat(latitude),
+                      parseFloat(longitude)
                     ));
                     marker.setPosition(new google.maps.LatLng(
-                        parseFloat(latitude),
-                        parseFloat(longitude)
+                      parseFloat(latitude),
+                      parseFloat(longitude)
                     ))
                   }
                 });
@@ -1292,11 +1346,11 @@ $document.ready(function () {
     var k;
     for (k = 0; k < plugins.owl.length; k++) {
       var c = $(plugins.owl[k]),
-          responsive = {};
+        responsive = {};
 
       var aliaces = ["-", "-xs-", "-sm-", "-md-", "-lg-"],
-          values = [0, 480, 768, 992, 1200],
-          i, j;
+        values = [0, 480, 768, 992, 1200],
+        i, j;
 
       for (i = 0; i < values.length; i++) {
         responsive[values[i]] = {};
@@ -1320,8 +1374,8 @@ $document.ready(function () {
       if (c.attr('data-dots-custom')) {
         c.on("initialized.owl.carousel", function (event) {
           var carousel = $(event.currentTarget),
-              customPag = $(carousel.attr("data-dots-custom")),
-              active = 0;
+            customPag = $(carousel.attr("data-dots-custom")),
+            active = 0;
 
           if (carousel.attr('data-active')) {
             active = parseInt(carousel.attr('data-active'));
@@ -1346,7 +1400,7 @@ $document.ready(function () {
       if (c.attr('data-nav-custom')) {
         c.on("initialized.owl.carousel", function (event) {
           var carousel = $(event.currentTarget),
-              customNav = $(carousel.attr("data-nav-custom"));
+            customNav = $(carousel.attr("data-nav-custom"));
 
           customNav.find("[data-owl-prev]").on('click', function (e) {
             e.preventDefault();
@@ -1389,26 +1443,26 @@ $document.ready(function () {
     var i, j, isogroup = [];
     for (i = 0; i < plugins.isotope.length; i++) {
       var isotopeItem = plugins.isotope[i],
-          filterItems = $(isotopeItem).closest('.isotope-wrap').find('[data-isotope-filter]'),
-          iso = new Isotope(isotopeItem,
-              {
-                itemSelector: '.isotope-item',
-                layoutMode: isotopeItem.getAttribute('data-isotope-layout') ? isotopeItem.getAttribute('data-isotope-layout') : 'masonry',
-                filter: '*',
-              }
-          );
+        filterItems = $(isotopeItem).closest('.isotope-wrap').find('[data-isotope-filter]'),
+        iso = new Isotope(isotopeItem,
+          {
+            itemSelector: '.isotope-item',
+            layoutMode: isotopeItem.getAttribute('data-isotope-layout') ? isotopeItem.getAttribute('data-isotope-layout') : 'masonry',
+            filter: '*',
+          }
+        );
 
       isogroup.push(iso);
 
       filterItems.on("click", function (e) {
         e.preventDefault();
         var filter = $(this),
-            iso = $('.isotope[data-isotope-group="' + this.getAttribute("data-isotope-group") + '"]'),
-            filtersContainer = filter.closest(".isotope-filters");
+          iso = $('.isotope[data-isotope-group="' + this.getAttribute("data-isotope-group") + '"]'),
+          filtersContainer = filter.closest(".isotope-filters");
 
         filtersContainer
-            .find('.active')
-            .removeClass("active");
+          .find('.active')
+          .removeClass("active");
         filter.addClass("active");
 
         iso.isotope({
@@ -1477,7 +1531,9 @@ $document.ready(function () {
    * RD Navbar
    * @description Enables RD Navbar plugin
    */
-   if (plugins.rdNavbar.length) {
+
+
+  if (plugins.rdNavbar.length) {
     plugins.rdNavbar.RDNavbar({
       stickUpClone: (plugins.rdNavbar.attr("data-stick-up-clone")) ? plugins.rdNavbar.attr("data-stick-up-clone") === 'true' : false,
       stickUpOffset: (plugins.rdNavbar.attr("data-stick-up-offset")) ? plugins.rdNavbar.attr("data-stick-up-offset") : 1,
@@ -1499,13 +1555,13 @@ $document.ready(function () {
       event.preventDefault();
 
       var $el = $(this),
-          $galleryItems = $el.parents("[data-photo-swipe-gallery]").find("a[data-photo-swipe-item]"),
-          pswpElement = document.querySelectorAll('.pswp')[0],
-          encounteredItems = {},
-          pswpItems = [],
-          options,
-          pswpIndex = 0,
-          pswp;
+        $galleryItems = $el.parents("[data-photo-swipe-gallery]").find("a[data-photo-swipe-item]"),
+        pswpElement = document.querySelectorAll('.pswp')[0],
+        encounteredItems = {},
+        pswpItems = [],
+        options,
+        pswpIndex = 0,
+        pswp;
 
       if ($galleryItems.length == 0) {
         $galleryItems = $el;
@@ -1514,9 +1570,9 @@ $document.ready(function () {
       // loop over the gallery to build up the photoswipe items
       $galleryItems.each(function () {
         var $item = $(this),
-            src = $item.attr('href'),
-            size = $item.attr('data-size').split('x'),
-            pswdItem;
+          src = $item.attr('href'),
+          size = $item.attr('data-size').split('x'),
+          pswdItem;
 
         if ($item.is(':visible')) {
           // if we have this image the first time
@@ -1547,7 +1603,7 @@ $document.ready(function () {
 
         getThumbBoundsFn: function (index) {
           var $el = pswpItems[index].el,
-              offset = $el.offset();
+            offset = $el.offset();
 
           return {
             x: offset.left,
@@ -1694,22 +1750,22 @@ $document.ready(function () {
   if (plugins.search.length || plugins.searchResults) {
     var handler = "bat/rd-search.php";
     var defaultTemplate = '<h5 class="search_title"><a target="_top" href="#{href}" class="search_link">#{title}</a></h5>' +
-        '<p>...#{token}...</p>' +
-        '<p class="match"><em>Terms matched: #{count} - URL: #{href}</em></p>';
+      '<p>...#{token}...</p>' +
+      '<p class="match"><em>Terms matched: #{count} - URL: #{href}</em></p>';
     var defaultFilter = '*.html';
 
     if (plugins.search.length) {
 
       for (i = 0; i < plugins.search.length; i++) {
         var searchItem = $(plugins.search[i]),
-            options = {
-              element: searchItem,
-              filter: (searchItem.attr('data-search-filter')) ? searchItem.attr('data-search-filter') : defaultFilter,
-              template: (searchItem.attr('data-search-template')) ? searchItem.attr('data-search-template') : defaultTemplate,
-              live: (searchItem.attr('data-search-live')) ? searchItem.attr('data-search-live') : false,
-              liveCount: (searchItem.attr('data-search-live-count')) ? parseInt(searchItem.attr('data-search-live')) : 4,
-              current: 0, processed: 0, timer: {}
-            };
+          options = {
+            element: searchItem,
+            filter: (searchItem.attr('data-search-filter')) ? searchItem.attr('data-search-filter') : defaultFilter,
+            template: (searchItem.attr('data-search-template')) ? searchItem.attr('data-search-template') : defaultTemplate,
+            live: (searchItem.attr('data-search-live')) ? searchItem.attr('data-search-live') : false,
+            liveCount: (searchItem.attr('data-search-live-count')) ? parseInt(searchItem.attr('data-search-live')) : 4,
+            current: 0, processed: 0, timer: {}
+          };
 
         if ($('.rd-navbar-search-toggle').length) {
           var toggle = $('.rd-navbar-search-toggle');
@@ -1736,9 +1792,9 @@ $document.ready(function () {
 
         searchItem.submit($.proxy(function () {
           $('<input />').attr('type', 'hidden')
-              .attr('name', "filter")
-              .attr('value', this.filter)
-              .appendTo(this.element);
+            .attr('name', "filter")
+            .attr('value', this.filter)
+            .appendTo(this.element);
           return true;
         }, options, this))
       }
@@ -1778,19 +1834,19 @@ $document.ready(function () {
    */
   if (plugins.rdMailForm.length) {
     var i, j, k,
-        msg = {
-          'MF000': 'Successfully sent!',
-          'MF001': 'Recipients are not set!',
-          'MF002': 'Form will not work locally!',
-          'MF003': 'Please, define email field in your form!',
-          'MF004': 'Please, define type of your form!',
-          'MF254': 'Something went wrong with PHPMailer!',
-          'MF255': 'Aw, snap! Something went wrong.'
-        };
+      msg = {
+        'MF000': 'Successfully sent!',
+        'MF001': 'Recipients are not set!',
+        'MF002': 'Form will not work locally!',
+        'MF003': 'Please, define email field in your form!',
+        'MF004': 'Please, define type of your form!',
+        'MF254': 'Something went wrong with PHPMailer!',
+        'MF255': 'Aw, snap! Something went wrong.'
+      };
 
     for (i = 0; i < plugins.rdMailForm.length; i++) {
       var $form = $(plugins.rdMailForm[i]),
-          formHasCaptcha = false;
+        formHasCaptcha = false;
 
       $form.attr('novalidate', 'novalidate').ajaxForm({
         data: {
@@ -1799,10 +1855,10 @@ $document.ready(function () {
         },
         beforeSubmit: function () {
           var form = $(plugins.rdMailForm[this.extraData.counter]),
-              inputs = form.find("[data-constraints]"),
-              output = $("#" + form.attr("data-form-output")),
-              captcha = form.find('.recaptcha'),
-              captchaFlag = true;
+            inputs = form.find("[data-constraints]"),
+            output = $("#" + form.attr("data-form-output")),
+            captcha = form.find('.recaptcha'),
+            captchaFlag = true;
 
           output.removeClass("active error success");
 
@@ -1811,10 +1867,10 @@ $document.ready(function () {
             // veify reCaptcha
             if(captcha.length) {
               var captchaToken = captcha.find('.g-recaptcha-response').val(),
-                  captchaMsg = {
-                    'CPT001': 'Please, setup you "site key" and "secret key" of reCaptcha',
-                    'CPT002': 'Something wrong with google reCaptcha'
-                  }
+                captchaMsg = {
+                  'CPT001': 'Please, setup you "site key" and "secret key" of reCaptcha',
+                  'CPT002': 'Something wrong with google reCaptcha'
+                }
 
               formHasCaptcha = true;
 
@@ -1868,11 +1924,11 @@ $document.ready(function () {
         },
         success: function (result) {
           var form = $(plugins.rdMailForm[this.extraData.counter]),
-              output = $("#" + form.attr("data-form-output"));
+            output = $("#" + form.attr("data-form-output"));
 
           form
-              .addClass('success')
-              .removeClass('form-in-process');
+            .addClass('success')
+            .removeClass('form-in-process');
 
           if(formHasCaptcha) {
             grecaptcha.reset();
@@ -1930,17 +1986,17 @@ $document.ready(function () {
   }
 
 
-/**
- *  Custom scroll
- *  @description change class when is scroll to some id
- */
+  /**
+   *  Custom scroll
+   *  @description change class when is scroll to some id
+   */
   if ($('#section-change-color').length) {
     if (plugins.navbarToggle.length) {
       if ($(window).width() > 1182) {
         for (i = 0; i < plugins.navbarToggle.length; i++) {
           var $navbarToggle = $(plugins.navbarToggle[i]),
-              $changeColor = $('#section-change-color'),
-              $navbarToogleInv = $changeColor.offset().top - '60';
+            $changeColor = $('#section-change-color'),
+            $navbarToogleInv = $changeColor.offset().top - '60';
 
           if (window.pageYOffset >= $navbarToogleInv) {
             $navbarToggle.addClass("rd-navbar-toggle-inverse");
@@ -2052,7 +2108,7 @@ $document.ready(function () {
             $('.checkout-step-btn').on("click", function (e) {
               e.preventDefault();
               var index = this.getAttribute("data-index-to"),
-                  inputs = tabs.$content.find(".rd-material-tab").eq(index - 1).find("[data-constraints]");
+                inputs = tabs.$content.find(".rd-material-tab").eq(index - 1).find("[data-constraints]");
 
               if (isValidated(inputs)) {
                 tabs.setContentTransition(tabs, tabs.options.speed);
@@ -2097,11 +2153,11 @@ $document.ready(function () {
 
   /**
    * Gallery RD Material Tabs
-  */
+   */
   if (plugins.galleryRDTabs.length) {
     var uniqueRandoms = [];
     var timer = false,
-        timer2 = false;
+      timer2 = false;
     plugins.galleryRDTabs.RDMaterialTabs({
       responsive: {
         0: {
@@ -2140,6 +2196,14 @@ $document.ready(function () {
         }
       }
     });
+
     $window.trigger("resize");
   }
+
+}
+
+$document.ready(function () {
+  satya();
+  console.log("test satya "+plugins.swiper.length);
+
 });

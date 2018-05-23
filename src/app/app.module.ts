@@ -11,6 +11,8 @@ import { AdminComponent } from './admin/admin.component';
 import {ProfileComponent} from './main/home/profile/profile.component';
 import {LoginComponent} from './main/home/profile/login/login.component';
 import {SignupComponent} from './main/home/profile/signup/signup.component';
+import {MaterialModule} from "./material.module";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import {SignupComponent} from './main/home/profile/signup/signup.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MaterialModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,11 +1,12 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {MatNativeDateModule} from '@angular/material';
 //import {$} from "protractor";
 
 /*
 import * as $ from 'jquery';
 */
 declare function satya():any;
-declare function demo():any;
+declare function datetimepicker():any;
 
 
 @Component({

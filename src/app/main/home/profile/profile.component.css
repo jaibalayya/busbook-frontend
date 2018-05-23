@@ -1,6 +1,6 @@
-@import url("https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css");
+/*@import url("https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css");*/
 
-
+/*
 button.btn-submit{
   background-color: #38547b;
   color: #fff;
@@ -14,12 +14,12 @@ input.ng-invalid.ng-dirty{
   border-bottom-color : #e91e63 !important;
   box-shadow: 0 1px 0 0 #e91e63 !important;
 }
-/*for error div i*/
+!*for error div i*!
 div.error-message i{
   vertical-align: middle !important;
 }
 
-/*for tab control*/
+!*for tab control*!
 .tabs{
   height: 65px;
 }
@@ -35,9 +35,9 @@ div.error-message i{
 
 .tabs .tab a.active{
   background-color: #fff !important;
-}
-.mycc{
-  margin-top: 200px;
-  margin-bottom: 200px;
+}*/
+.test{
+  margin-top:20px;
+  margin-bottom: 20px;
 }
 

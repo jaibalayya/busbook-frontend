@@ -74,7 +74,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="group-item element-fullwidth element-fullwidth-xs" >
+                  <div class="group-item element-fullwidth" >
                     <div class="form-group text-left">
                       <label for="form-filter-location-from-date-first" class="form-label form-label-outside">Depart Date</label>
                       <div class="select2-whitout-border shadow-drop-md" class="datePicker">
@@ -86,7 +86,18 @@
                       </div>
                     </div>
                   </div>
-                  
+                  <div class="group-item element-fullwidth" >
+                    <div class="form-group text-left">
+                      <label for="form-filter-location-from-date-first" class="form-label form-label-outside">Return Date</label>
+                      <div class="select2-whitout-border shadow-drop-md" class="datePicker">
+                        <mat-form-field class="datePicker">
+                          <input matInput [matDatepicker]="fixDate" placeholder="Choose a date" name="fixDate">
+                          <mat-datepicker-toggle matSuffix [for]="fixDate"></mat-datepicker-toggle>
+                          <mat-datepicker #fixDate></mat-datepicker>
+                        </mat-form-field>
+                      </div>  
+                    </div>
+                  </div>
                   <!--<div class="group-item element-fullwidth element-fullwidth-xs">
                     <div class="form-group text-left">
                       <label for="form-filter-location-to-date-first" class="form-label form-label-outside">Ticket Type</label>

@@ -32120,7 +32120,7 @@ a.pswp__share--download:hover {
   padding-left: 17px; }
 
 .select2-whitout-border .select2-selection {
-  border-color: transparent; }
+  border-color: white; }
 
 .select2-whitout-border .select2-container--bootstrap.select2-container--focus .select2-selection, .select2-whitout-border .select2-container--bootstrap.select2-container--open .select2-selection {
   border-color: transparent; }

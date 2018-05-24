@@ -2207,3 +2207,19 @@ $document.ready(function () {
   console.log("test satya "+plugins.swiper.length);
 
 });
+
+//Round trip toggle added by asish
+function toggle() { 
+  // get the Div 
+  var myDiv = document.getElementById('showhide');
+  var btn = document.getElementById('roundTripButton');
+  btn.style.display='none';
+  // now toggle the visibility, depending on current state
+  if (myDiv.style.display == 'block') { 
+    // Div is visible. hide it
+    myDiv.style.display = 'none';
+  } else { 
+    // Div is hidden. show it 
+    myDiv.style.display = 'block';
+  }
+}

@@ -2213,7 +2213,6 @@ function toggle() {
   // get the Div 
   var myDiv = document.getElementById('showhide');
   var btn = document.getElementById('roundTripButton');
-  btn.style.display='none';
   // now toggle the visibility, depending on current state
   if (myDiv.style.display == 'block') { 
     // Div is visible. hide it

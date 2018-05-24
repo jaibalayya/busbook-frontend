@@ -2211,14 +2211,14 @@ $document.ready(function () {
 //Round trip toggle added by asish
 function toggle() { 
   // get the Div 
-  var myDiv = document.getElementById('showhide');
+  var roundTripDiv = document.getElementById('showhide');
   var btn = document.getElementById('roundTripButton');
   // now toggle the visibility, depending on current state
-  if (myDiv.style.display == 'block') { 
+  if (roundTripDiv.style.display == 'block') { 
     // Div is visible. hide it
-    myDiv.style.display = 'none';
+    roundTripDiv.style.display = 'none';
   } else { 
     // Div is hidden. show it 
-    myDiv.style.display = 'block';
+    roundTripDiv.style.display = 'block';
   }
 }

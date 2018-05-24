@@ -78,12 +78,11 @@
                     <div class="form-group text-left">
                       <label for="form-filter-location-from-date-first" class="form-label form-label-outside">Depart Date</label>
                       <div class="select2-whitout-border shadow-drop-md">
-                        <select id="form-filter-location-from-date-first" name="date-from" data-minimum-results-for-search="Infinity" class="form-control">
-                          <option value="1">7-11-2016</option>
-                          <option value="2">2-12-2016</option>
-                          <option value="3">14-11-2016</option>
-                          <option value="4">3-10-2016</option>
-                        </select>
+                        <mat-form-field id="form-filter-location-from-date-first">
+                          <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+                          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                          <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
                       </div>
                     </div>
                   </div>

@@ -150,12 +150,20 @@
                   </div>
                 </div>
               </li>
-              <li><a class="material-icons " routerLink='/login' routerLinkActive='active'>account_circle</a></li>
+              <!--<li><a class="material-icons " routerLink='/login' routerLinkActive='active'>account_circle</a></li>-->
+              <li>
+                <button mat-icon-button (click)="openDialog()">
+                  <mat-icon class="md-48">
+                    account_circle
+                  </mat-icon>
+                </button>
+              </li>
             </ul>
           </div>
         </div>
         <!-- RD Navbar Search-->
-        <div class="rd-navbar-search rd-navbar-search-top-panel"><a data-rd-navbar-toggle=".rd-navbar-inner,.rd-navbar-search" href="#" class="rd-navbar-search-toggle mdi"><span></span></a>
+
+        <!--<div class="rd-navbar-search rd-navbar-search-top-panel"><a href="#" class="rd-navbar-search-toggle mdi"><span></span></a>
           <form action="http://livedemo00.template-help.com/wt_60033/search-results.html" data-search-live="rd-search-results-live" method="GET" class="rd-navbar-search-form search-form-icon-right rd-search">
             <div class="form-group">
               <label for="rd-navbar-search-form-input" class="form-label rd-input-label">Type and hit enter...</label>
@@ -163,7 +171,7 @@
             </div>
             <div id="rd-search-results-live" class="rd-search-results-live"></div>
           </form>
-        </div>
+        </div>-->
       </div>
     </div>
   </nav>

@@ -1,19 +1,33 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {ProfileComponent} from '../profile/profile.component';
+import {MatDialog} from '@angular/material';
 
-declare function satya():any;
+
+declare function satya(): any;
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit,   AfterViewInit {
+export class HeaderComponent implements OnInit, AfterViewInit {
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(public  dialog: MatDialog) {
   }
 
-  ngAfterViewInit(){
+  name: string;
+  animal: string;
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(ProfileComponent, {
+      width: '368px',
+      height: '400px',
+
+    });
+  }
+  ngOnInit() {
+  }
+  ngAfterViewInit() {
     satya();
   }
 

@@ -28,7 +28,7 @@ import { MobileVerificationComponent } from './main/profile/signup/mobile-verifi
     ProfileComponent,
     LoginComponent,
     SignupComponent,
-    MobileVerificationComponent
+    MobileVerificationComponent,
   ],
   imports: [
     BrowserModule,
